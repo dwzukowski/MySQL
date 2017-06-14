@@ -1,0 +1,44 @@
+<html>
+    <head>
+       <title>Full Friends</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    </head>
+<body>
+<div class="wrapper">
+<table style="width:75%;border:2px solid black;margin-bottom:100px">
+  <tr>
+    <th>id</th>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+    <th>Friend Since</th>
+    <th>created_at</th>
+    <th>updated_at</th>
+  </tr>
+    {% for friend in friends: %}
+    <tr>
+    <td>{{ friend['id'] }}</p>
+    <td>{{ friend['firstName'] }}</p>
+    <td>{{ friend['lastName'] }}</p>
+    <td>{{ friend['friendSince'] }}</p>
+    <td>{{ friend['created_at']}}</p>
+    <td>{{ friend['updated_at']}}</p>
+    </tr>
+  {% endfor %}
+</table>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color: red;font-size: 30px;">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <form class="myform" action='/process' method='post'>
+        <h1> Add Friends</h1>
+        <input type="text" name="firstName" placeholder="FirstName">
+        <input type="text" name="lastName" placeholder="LastName">
+        <input type="date" name="friendSince" placeholder="Friend Since">
+        <input type='submit' value='Add Friend'>
+    </form>
+</div>
+</body>
+</html>

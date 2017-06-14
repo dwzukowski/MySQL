@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head> 
+    <meta charset="utf-8">
+    <title> Success Page</title>
+    <meta name="description" content="This is the email validation with database assignment">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+</head>
+<body>
+<div class="wrapper">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color: green;font-size: 30px;">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+<table style="width:75%;border:2px solid black;margin-top:50px;">
+    <tr>
+    <th>id</th>
+    <th>Email</th>
+    <th>created_at</th>
+    <th>updated_at</th>
+  </tr>
+    {% for email in emails: %}
+    <td>{{ email['id'] }}</p>
+    <td>{{ email['email'] }}</p>
+    <td>{{ email['created_at']}}</p>
+    <td>{{ email['updated_at']}}</p>
+    </tr>
+    {% endfor %}
+</table>
+
+    <form style="margin-top:50px" class="myform" action='/deleteRow' method='post'>
+        <input type="number" name="deleteThisRow" placeholder="Enter a Row Number">
+        <input type='submit' value='Delete'>
+    </form>
+
+<div>
+</body>
+</html>
