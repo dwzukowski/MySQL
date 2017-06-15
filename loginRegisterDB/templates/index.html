@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head> 
+    <meta charset="utf-8">
+    <title> Email Validation with DB</title>
+    <meta name="description" content="This is the email validation with database assignment">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+</head>
+<body>
+<div class="wrapper">
+
+<div class="wrapper">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;font-size: 25px;">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<h1> Welcome, please sign-in</h1> 
+    <form class="myform" action='/signin' method='post'>
+        <input type="text" name="email" placeholder="email address">
+        <input type="text" name="password" placeholder="password">
+        <input type='submit' value='Sign In'>
+    </form>
+
+</div>
+</body>
+</html>
