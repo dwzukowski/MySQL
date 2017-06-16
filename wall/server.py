@@ -78,7 +78,7 @@ def loadWall():
 @app.route('/message',methods=['POST'])
 def postmessage():
     message= request.form['message']
-    query = "INSERT INTO messages (user_id, message, created_at, updated_at) VALUES ('{}', '{}', NOW(), NOW())".format(session['loggedinUser'],message)
+    query = "INSERT INTO messages(message, created_at, updated_at, user_id) VALUES ('{}', NOW(), NOW(), {})".format(message, session['loggedinUser'])
     mysql.query_db(query)
     return redirect('/wall')
 @app.route('/comment/<id>',methods=['POST'])
