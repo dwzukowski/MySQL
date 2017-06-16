@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head> 
+    <meta charset="utf-8">
+    <title> The Wall</title>
+    <meta name="description" content="This is the wall">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+</head>
+<body>
+<div class="wrapper">
+<h1> This is The Wall</h1> 
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;font-size: 25px;">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form class="myform" action='/message' method='post'>
+        <textarea name="message" rows="4" cols="50" style="width: 50%"placeholder="Write a message!"></textarea>
+        <input type='submit' value='Post Message'>
+    </form>
+    <h1 style="margin-top: 30px;color:goldenrod">Posts</h2>
+        {% for message in messages: %}
+            <div style="border: 2px dotted black;background-color:lightslategray; padding:10px;margin: 10px">
+                <!--Post header--> 
+                <h6>Post by {{message['firstName']}} {{message['Lastname']}} at {{message['created_at']}}
+                <!--Post content --> 
+                <p style="font-family: Arial, Helvetica, sans-serif; font-size:14px; margin-top: 10px">{{message['message']}}</p>
+                <!-- Comments box --> 
+                <form action='/comment/{{message['id']}}' method='post'>
+                    <textarea name="comment" rows="2" cols="25" style="width:30%;margin-left: 30px; margin-top: 20px" placeholder="Make a clever comment"></textarea>
+                <input type='submit' value='Comment'>
+                </form>
+            {% for comment in comments%}
+            {% if comment['message_id']==message['id']%}
+                <div style="border: 1px solid black;background-color:darkgrey; padding:10px;margin-left: 40px; border-radius: 20px;margin:5px 100px 5px 50px">
+                <!--Comment header--> 
+                <h6 style="font-size:10px">Comment from {{comment['firstName']}} {{comment['Lastname']}} at {{comment['created_at']}}
+                <!--Comment content --> 
+                <p style="font-family: Arial, Helvetica, sans-serif; font-size:14px; margin-top: 10px">{{comment['comment']}}</p>
+                </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+        {% endfor %}
+
+
+
+
+</div>
+</body>
+</html>

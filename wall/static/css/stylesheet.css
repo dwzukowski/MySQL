@@ -1,0 +1,25 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    /*outline: 1px dashed green; */
+}
+.wrapper {
+    padding: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 1000px;
+    height: auto;
+    background-color:#245176;
+}
+h1{
+    color: white;
+}
+.myform input{
+    display: block;
+    margin: 10px;
+}
+.gold {
+    color: goldenrod;
+    font-size: 40px;
+}
